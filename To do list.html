@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Project To-Do List</title>
+    <style>
+        /* Add your CSS styles here */
+        body{
+            background-color:white;
+        }
+        button{
+            height: 40px;
+            width: 70px;
+            background-color: burlywood;
+        }
+        h1{
+              text-align: center;
+              background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Project To-Do List</h1>
+    <div id="app">
+        <div class="categories">
+            <select id="category">
+                <option value="design">Design</option>
+                <option value="development">Development</option>
+                <option value="content">Content</option>
+            </select>
+        </div>
+        <div class="task-input">
+            <input type="text" id="task" placeholder="Add a task">
+            <input type="date" id="deadline">
+            <select id="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <input type="text" id="label" placeholder="Add a label">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        <div class="tasks">
+            <ul id="taskList">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const taskList = document.getElementById('taskList');
+
+        function addTask() {
+            const category = document.getElementById('category').value;
+            const task = document.getElementById('task').value;
+            const deadline = document.getElementById('deadline').value;
+            const priority = document.getElementById('priority').value;
+            const label = document.getElementById('label').value;
+
+            const taskItem = document.createElement('li');
+            taskItem.innerHTML = `
+                <strong>${category}</strong> - ${task}
+                <br> Deadline: ${deadline}, Priority: ${priority}, Label: ${label}
+            `;
+
+            taskList.appendChild(taskItem);
+
+            // Clear input fields
+            document.getElementById('task').value = '';
+            document.getElementById('deadline').value = '';
+            document.getElementById('label').value = '';
+        }
+    </script>
+</body>
+</html>
